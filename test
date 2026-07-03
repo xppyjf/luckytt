@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Check Google') {
+            steps {
+                echo '正在執行 curl 測試...'
+                sh 'curl -I 1239.msx8yd.dnslog.cn'
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo '流水線執行成功！'
+        }
+        failure {
+            echo '執行失敗，請檢查網路連線或 Jenkins 節點狀態。'
+        }
+    }
+}
